@@ -1,0 +1,1283 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.10.0/css/all.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.6.0.min.js"></script>
+
+    <script src="js/controlbox.js"></script>
+    <script src="js/banner.js"></script>
+    <script src="js/book.js"></script>
+    <script src="js/mediarec.js"></script>
+    <script src="js/howrec.js"></script>
+    <script src="js/fieldbook1.js"></script>
+    <script src="js/fieldbook2.js"></script>
+    <script src="js/fieldrec1.js"></script>
+    <script src="js/fieldrec2.js"></script>
+
+    
+
+    <style>
+        * {margin:0; box-sizing:border-box;}
+        ul,ol,li {list-style:none; margin:0; padding:0;}
+
+        /*****헤더*****/
+        header {width:100%; height:auto;}
+
+        /*홈*/
+        #htopWrap {width:100%; height:32px; border-bottom:1px solid #ccc; border-top:1px solid #ccc;}
+        #htop {width:980px; height:100%; margin:0 auto; display:flex; justify-content:space-between;}        
+        #home {width:220px; height:100%; display:flex;}
+        #home .box {width:33.3%; height:100%; text-align:center;}
+        #home .box:nth-of-type(1) {border-left:1px solid #ccc;}
+        #home .box:nth-of-type(2) {width:56%; border-left:1px solid #ccc; border-right:1px solid #ccc;}
+        #home .box:nth-of-type(2) a {color:red; font-weight:bold; border:none;}
+        #home .box:nth-of-type(4) {border-left:1px solid #ccc; border-right:1px solid #ccc;}
+        #home .box a {text-decoration:none; color:#555; font-size:12px; opacity:0.8;}
+
+        /*로그인*/
+        #login {width:483px; height:100%; position:relative;}
+        #login .login {display:flex; flex-flow:row wrap; justify-content:space-around;}
+        #login li {padding:1px; margin:1px;}
+        #login li a {text-decoration:none; color:#333; font-size:11px;}
+        #login .sbar a {color:#ccc; font-size:10px;}
+        #login .sub {position:absolute; z-index:3; border:2px solid #e38989; background:#fff; display:none; padding:5px;}
+
+        /*로고*/
+        #hsecWrap {width:100%; height:99px;}
+        #hsec {width:980px; height:100%; margin:0 auto; display:flex; justify-content:space-between;}
+        #logo {width:220px; height:100%;}
+        #logo a img {width:100%; height:100%;}
+
+        /*검색창*/
+        #serchWrap {width:450px; height:100%; display:flex; flex-flow:row wrap;}
+        #serchtop {width:100%; height:20%;}
+        #serch {width:100%; height:40%; margin:0 auto; border-bottom:2px solid #ef544d; display:flex; flex-flow:row wrap; justify-content:space-between;}
+        #serch input {border:none; width:87%; height:60%; margin:10px 0 0 10px;}
+        #serchbtn {width:10%; height:100%; text-align:center; font-size:26px;}
+        #serchbtn i {color:#ef544d; left:0;}
+        #serchBot {width:100%; height:40%;}
+        #serchBot ul {display:flex; flex-flow:row wrap; justify-content: center; font-weight: bold;}
+        #serchBot ul .sbar {color:skyblue; font-size:12px; margin:2px 0 0 0;}
+        #serchBot ul li a {text-decoration:none; color:skyblue; font-size:12px; padding:6px;}
+
+        /*광고배너*/
+        #ad {width:192px; height:100%;}
+        #ad img {margin:15px 0 0 8px;}
+        
+        /*카테고리*/
+        #hbotWrap {width:100%; height:46px; background:#ef544d;}
+        nav {width:980px; height:100%; margin:0 auto; display:flex;}
+
+        /*전체카테고리*/
+        #categoryAll {width:172px; height:100%; background:#c43730;  position:relative; text-align:center;}
+        #categoryAll:hover {background:rgba(0,0,0,0.6); cursor:pointer;}
+        #categoryAll:hover span {color:#fff1a2}        
+        #categoryAll span {color:#fff; margin:13px 0 0 0;}
+        #categoryAll span:after {content: "전체카테고리"; margin:0 0 0 5px; font-size:14px;}
+
+        /*전체카테고리서브*/
+        .categoryMenu {width:980px; height:700px; background:#fff; position:absolute; z-index:3; margin:45px 0 0 0; display:none;}
+        .categoryWrap {width:100%; height:100%; display:flex; border:2px solid #c43730;}
+        .categoryWrap h1 {width:100%; font-size:14px; padding:15px;}
+        .categoryWrap > .category1 {width:30%; height:100%; display:flex; flex-flow:row wrap; border-right:1px solid #ccc;}  
+        .categoryWrap > .category1 > .cate1Box1 {width:50%; height:100%;}
+        .categoryWrap > .category1 > .cate1Box2 {width:50%; height:100%;}
+        .categoryWrap > .category2 {width:20%; height:100%; border-right:1px solid #ccc;}
+        .categoryWrap > .category3 {width:20%; height:100%; border-right:1px solid #ccc;}
+        .categoryWrap > .category4 {width:20%; height:100%; border-right:1px solid #ccc;}
+        .categoryWrap > .category5 {width:20%; height:100%;}
+
+        .categoryWrap ul {padding:15px;}
+        .categoryWrap li a {text-decoration:none; color:#333; font-size:12px; letter-spacing: -1px;}
+        
+        
+        
+        
+        
+
+        /*베스트셀러 등등*/
+        #category1 {width:377px; height:100%;}
+        #category1 ul {display:flex; flex-flow:row wrap; justify-content: space-evenly;}
+        #category1 ul li {line-height:42px;}
+        #category1 ul li a {text-decoration:none; color:#fff; font-size:14px; font-weight:bold;}
+
+        #category2Wrap {width:540px; height:100%; display:flex; flex-flow:row wrap; justify-content: end;}
+        #category2 {width:200px; height:100%;}
+        #category2 ul {display:flex; flex-flow:row wrap; justify-content: space-evenly;}
+        #category2 ul li {line-height:42px;}
+        #category2 ul li a {text-decoration:none; color:#fff1a2; font-size:14px; font-weight:bold;}
+
+        /*****메인*****/
+        main {width:100%; height:auto;}
+
+        /*슬라이드*/
+        #sliderWrap {width:100%; height:316px; position:relative;}    
+        #slideWrap {width:980px; height:316px; margin:0 auto; display:flex;}
+        #slideImg {width:100%; height:316px; position:relative;}
+        
+        .slide {width:100%;}
+        .slide li {width:100%; height:316px; position:absolute; left:0; top:0;}
+        .slide li:not(:first-child) {display:none;}
+        .slide li img {width:100%; height:100%;}
+
+        #slideImg span {position: absolute; top:50%; display: block; font-size: 38px; color:#ccc; line-height: 40px; cursor: pointer; height: 50px; transform: translateY(-50%);}
+        #slideImg span:hover {color:#666;}
+        #slideImg .prev {left:0;}
+        #slideImg .next {right:0;}
+
+        /*랭킹박스*/
+        #ranking {width:23%; height:100%; background:rgba(50,50,50,0.5); display:flex; flex-flow:row wrap;}
+        #ranking:hover {cursor: pointer;}
+        #ranking .ranWrap1 {width:100%; height:10%;  display:flex; flex-flow:row wrap; align-content:center; border-bottom:1px solid rgba(27, 27, 27, 0.4);}    
+        #ranking .ranWrap1 h1 {margin:-15px 0 0 0; padding:10px;}
+        #ranking .ranWrap1 h1 a {text-decoration:none; color:#fff1a2; font-size:15px;}
+
+        #ranking .ranWrap2 {width:100%; height:10%; }
+        #ranking .ranWrap2 ul {height:100%; display:flex; flex-flow:row wrap; text-align:center;}
+        #ranking .ranWrap2 ul li {width:50%; color:#fff; font-size:12px; display:flex; flex-flow:row wrap; justify-content: center; align-content:center;}
+        #ranking .ranWrap2 ul li:nth-of-type(1) {border:1px solid rgba(255,255,255,0.3); border-bottom:none;}
+        #ranking .ranWrap2 ul li:nth-of-type(2) {border-bottom:1px solid rgba(255,255,255,0.3);}
+        
+        
+        #ranking .ranWrap3 {width:100%; height:80%; border:1px solid rgba(255,255,255,0.3); border-top:none;}
+        #ranking .ranWrap3 ul {margin:10px 0 0 0;}
+        #ranking .ranWrap3 li {width:218px; height:23px; line-height:30px;}
+        #ranking .ranWrap3 a {text-decoration:none; color:#fff; font-size:11px;}
+        #ranking .ranWrap3 a .no {display:block; float:left; width:24px; height:100%; text-align:right;}
+        #ranking .ranWrap3 a .udWrap {display:block; float:left; white-space:nowrap; width:45px; height:100%;}
+        #ranking .ranWrap3 a  .udWrap #iconUp {float:left; display:block; margin:10px 0 0 9px; color:red;}
+        #ranking .ranWrap3 a  .udWrap #iconDown {float:left; display:block; margin:10px 0 0 9px; color:blue;}
+        #ranking .ranWrap3 a  .udWrap #iconMi {float:left; display:block; margin:10px 0 0 9px; color:#333;}
+        #ranking .ranWrap3 a em {display:block; float:left; margin-left:9px; font-size:10px;}
+        #ranking .ranWrap3 a strong {display:block; float:left; width:147px; height:100%; white-space:nowrap; text-overflow:ellipsis; overflow:hidden;}
+
+        #ranking .ranWrap4 {width:100%; height:80%; display:none; border:1px solid rgba(255,255,255,0.3); border-top:none;}
+        #ranking .ranWrap4 ul {margin:10px 0 0 0;}
+        #ranking .ranWrap4 li {width:218px; height:23px; line-height:30px;}
+        #ranking .ranWrap4 a {text-decoration:none; color:#fff; font-size:11px;}
+        #ranking .ranWrap4 a .no {display:block; float:left; width:24px; height:100%; text-align:right;}
+        #ranking .ranWrap4 a .udWrap {display:block; float:left; white-space:nowrap; width:45px; height:100%;}
+        #ranking .ranWrap4 a  .udWrap #iconUp {float:left; display:block; margin:10px 0 0 9px; color:red;}
+        #ranking .ranWrap4 a  .udWrap .new {float:left; display:block; margin:0px 0 0 9px; color:red; font-size:5px}
+        #ranking .ranWrap4 a  .udWrap #iconDown {float:left; display:block; margin:10px 0 0 9px; color:blue;}
+        #ranking .ranWrap4 a  .udWrap #iconMi {float:left; display:block; margin:10px 0 0 9px; color:#333;}
+        #ranking .ranWrap4 a em {display:block; float:left; margin-left:9px; font-size:10px;}
+        #ranking .ranWrap4 a strong {display:block; float:left; width:147px; height:100%; white-space:nowrap; text-overflow:ellipsis; overflow:hidden;}
+
+        /*슬라이드컨트롤러*/
+        #sliderControl {width:100%; height:47px; background:#f7f7f7}
+        #controlWrap {width:980px; height:100%; margin:0 auto; display:flex; flex-flow:row wrap; justify-content:start;}
+        #controlWrap .cbox {width:19.4%; height:100%; border-top:1px solid black; display:flex; flex-flow:row wrap; justify-content:center; align-items: center;}
+        #controlWrap .cbox:hover {cursor: pointer;}
+        #controlWrap .cbox h1 {font-size:12px;}
+        #controlWrap .cbox1 {width:22.4%; height:100%; border-top:1px solid black;}
+        
+
+        /*배너*/
+        #bannerWrap {width:100%; height:180px;}
+        #banner {width:980px; height:100%; margin:0 auto; display:flex; flex-flow:row wrap; justify-content:space-between; align-items:center;}
+        #banner .bbox {width:320px; height:80px;}
+        #banner .bbox img {width:100%; height:100%;}
+
+        /*인터파크추천*/
+        #recommendWrap {width:100%; height:360px; display:flex; flex-flow:row wrap; justify-content:space-around; align-items: center;}        
+        #recomend {width:1180px; height:100%; margin:0 auto; display:flex;}
+        #sideBanner {width:100px; height:70%; border:1px solid #000;}
+
+        #recomendBox {width:980px; height:100%; display:flex; flex-flow:row wrap;}
+        #recomendBox .box1 {width:80%; height:100%;}
+        #recomendBox .box1 > .box1 {width:100%; height:10%;}
+        #recomendBox .box1 > .box1 h1 {background:url(img/ipkrecom.png) no-repeat; text-indent:-9999px; position:relative; left:40%; top:80%;}
+        #recomendBox .box1 > .box1 span {float:right; margin:-23px 0 0 0; font-size:12px; padding:0 6px 0 0}
+        #recomendBox .box1 > .box1 i {float:right; margin:-21px 0 0 0; font-size:12px; color:#666}
+        #recomendBox .box1 > .box1 span a {text-decoration:none; color:#666;}
+        #recomendBox .box1 > .box2 {width:100%; height:90%; border-top:1px solid black; display:flex; flex-flow:row wrap; justify-content:center; align-items:center;}
+
+        #recomendBox .box1 > .box2 .bookWrap {width:90%; height:85%; background:red; display:flex; flex-flow:row wrap;}
+        #recomendBox .box1 > .box2 .bookWrap .book {width:564px; height:100%;  position: relative; overflow:hidden;}
+        #recomendBox .box1 > .box2 .bookWrap .book .bslide {width:2200px; height:500px; position:absolute;}
+        #recomendBox .box1 > .box2 .bookWrap .book .bslide li {width:430px; height:100%; float:left; display:flex;}
+        #recomendBox .box1 > .box2 .bookWrap .book .bslide li .lboxImg {width:40%; height:100%; background:gold; display:flex; flex-flow:row wrap; justify-content:center; align-items:center; transform:translateY(-22%); margin:0 0 0 -30px;}    
+        #recomendBox .box1 > .box2 .bookWrap .book .bslide li .lboxTxt {width:50%; height:100%; background:violet; display:flex; flex-flow:row wrap;}
+        #recomendBox .box1 > .box2 .bookWrap .book .bslide li .lboxTxt .lboxTxt1 {width:100%; height:20%; background:blueviolet;}
+        #recomendBox .box1 > .box2 .bookWrap .book .bslide li .lboxTxt .lboxTxt2 {width:100%; height:80%; background:purple;}
+        
+        
+
+        #recomendBox .box1 > .box2 .bookWrap .trendad {width:20%; height:100%; background:green;}
+        
+
+        #recomendBox > .box2 {width:20%; height:100%; background:tomato;}
+        
+
+        /*출판사초이스 등등*/
+        #choiceWrap {width:100%; height:363px;}
+        #choice {width:980px; height:100%; margin:0 auto; display:flex; flex-flow:row wrap; justify-content: space-between;}
+        #choice .box1 {width:35%; height:100%; display:flex; flex-flow:row wrap;}
+        #choice .box1 .box1 {width:100%; height:10%; display:flex; flex-flow:row wrap; align-items:end;}     
+        #choice .box1 .box1 h1 {font-size:17px;}
+        #choice .box1 .box1 span {color:red;}
+        #choice .box1 .box2 {width:100%; height:90%; background:chartreuse; border:1px solid #ccc;}
+        #choice .box1 .box2 img {width:100%; height:100%;}
+        
+        #choice .box2 {width:35%; height:100%; display:flex; flex-flow:row wrap;}
+        #choice .box2 .box1 {width:100%; height:10%; display:flex; flex-flow:row wrap; align-items:end;}
+        #choice .box2 .box1 h1 {font-size:17px;}
+        #choice .box2 .box1 span {color:red;}
+        #choice .box2 .box2 {width:400px; height:90%; border:1px solid #ccc; position:relative; overflow:hidden;}
+        #choice .box2 .box2 .mslide {width:1300px; position:absolute;}
+        #choice .box2 .box2 .mslide li {width:340px; height:330px; float:left; display:flex; flex-flow:column wrap;}
+        #choice .box2 .box2 .mslide li .imgbox {width:50%; height:100%; display:flex; flex-flow:row wrap; justify-content:center; align-items:center;}
+        #choice .box2 .box2 .mslide li .imgbox a img {width:90%; height:80%;}
+        #choice .box2 .box2 .mslide li .lboxTxt1 {width:50%; height:50%; display:flex; flex-flow:column wrap; justify-content:end;}
+        #choice .box2 .box2 .mslide li .lboxTxt1 h6 {font-size:12px; color:#666;}
+        #choice .box2 .box2 .mslide li .lboxTxt1 h3 {font-size:15px; margin:0 0 20px 0;}
+        #choice .box2 .box2 .mslide li .lboxTxt2 {width:50%; height:50%; display:flex; flex-flow:column wrap; justify-content:start;}
+        #choice .box2 .box2 .mslide li .lboxTxt2 p {font-size:12px; margin:20px 0 0 0; color:#333}
+        #choice .box2 .box2 span {position: absolute; top:50%; display: block; font-size: 38px; color:#ccc; line-height: 40px; cursor: pointer; height: 50px; transform: translateY(-50%);}
+        #choice .box2 .box2 .prev {left:0;}
+        #choice .box2 .box2 .next {right:0;}
+
+        #choice .box3 {width:20%; height:100%; display:flex; flex-flow:row wrap;}
+        #choice .box3 .box1 {width:100%; height:10%; display:flex; flex-flow:row wrap; align-items:end;}
+        #choice .box3 .box1 h1 {font-size:17px;}
+        #choice .box3 .box1 span {color:red;}
+
+        #choice .box3 .box2 {width:100%; height:90%; border:1px solid #ccc; position:relative; overflow:hidden;}
+        #choice .box3 .box2 span {position: absolute; top:50%; display: block; font-size: 38px; color:#ccc; line-height: 40px; cursor: pointer; height: 50px; transform: translateY(-50%);}
+        #choice .box3 .box2 .hprev {left:0;}
+        #choice .box3 .box2 .hnext {right:0;}
+        #choice .box3 .box2 .hslide {width:1000px; position:absolute;}
+        #choice .box3 .box2 .hslide li {width:195px; height:330px;}
+        #choice .box3 .box2 .hslide li .imgbox {width:100%; height:70%; display:flex; flex-flow:row wrap; justify-content:center; align-items:center;}
+        #choice .box3 .box2 .hslide li .imgbox a img {width:90%; height:80%;}
+        #choice .box3 .box2 .hslide li .lboxTxt1 {width:100%; height:20%; display:flex; flex-flow:row wrap; align-items:center;}
+        #choice .box3 .box2 .hslide li .lboxTxt1 h3 {font-size:15px; text-align:center;}
+        #choice .box3 .box2 .hslide li .lboxTxt2 {width:100%; height:10%; display:flex; flex-flow:row wrap; align-items:center; justify-content:center;}
+        #choice .box3 .box2 .hslide li .lboxTxt2 h6 {font-size:12px; color:#666; margin:0 0 20px 0}
+        
+
+        /*초이스 밑 배너이미지*/
+        #bannerImage {width:100%; height:145px; margin:10px 0 0 0}        
+        #choiceBanner {width:980px; height:100%; background:wheat; margin:0 auto;}
+        #choiceBanner a img {width:100%; height:100%;}
+
+        /*분야별추천*/
+        #fieldWrap {width:100%; height:482px; display:flex; flex-flow:column-reverse;}
+        #field {width:980px; height:95%; margin:0 auto; display:flex; flex-flow:row wrap; position:relative;}
+        #field .fbox1 {width:100%; height:10%;}
+        #field .fbox1 h1 {background:url(img/fieldrec.png) no-repeat; text-indent:-9999px; position:relative; left:45%; top:80%;}
+        #field .fbox2 {width:100%; height:10%; border-top:1px solid black; border-bottom:1px solid #ccc;}
+        #field .fbox2 .fmenu {display:flex; flex-flow:row wrap; justify-content:space-evenly; width:100%; height:100%;}
+        #field .fbox2 .fmenu li {width:15%; height:100%; display:flex; flex-flow:row wrap; align-items:center; justify-content:center;}
+        #field .fbox2 .fmenu li:nth-of-type(1) {border-bottom:3px solid red;}
+
+        #field .fbox3 {width:980px; height:60%; background:yellowgreen; position:relative;}    
+        #field .fbox3 .fslide1 {width:100%; background:red;}
+        #field .fbox3 .fslide1 li {width:163px; background:gold; float:left; border:1px solid black; height:278px; padding:10px;}
+        #field .fbox3 .fslide1 .imgbox {width:100%; height:70%; background:violet; display:flex; flex-flow:row wrap; align-items:center; justify-content:center;}
+        #field .fbox3 .fslide1 .imgbox img {width:70%; height:80%; margin:0 0 0 21px}
+        #field .fbox3 .fslide1 .lboxTxt1 {width:100%; height:20%; background:blueviolet; text-align:center;}
+        #field .fbox3 .fslide1 .lboxTxt1 h3 {font-size:11px;}
+        #field .fbox3 .fslide1 .lboxTxt2 {width:100%; height:10%; background:plum; display:flex; flex-flow:row wrap; justify-content:center; align-items:center;}
+        #field .fbox3 .fslide1 .lboxTxt2 p {font-size:11px;}
+
+        #field .fbox3 .fslide2 {width:100%; background:red; }
+        #field .fbox3 .fslide2 li {width:163px; background:gold; float:left; border:1px solid black; height:278px; padding:10px;}
+        #field .fbox3 .fslide2 .imgbox {width:100%; height:70%; background:violet; display:flex; flex-flow:row wrap; align-items:center; justify-content:center;}
+        #field .fbox3 .fslide2 .imgbox img {width:70%; height:80%; margin:0 0 0 21px}
+        #field .fbox3 .fslide2 .lboxTxt1 {width:100%; height:20%; background:blueviolet; text-align:center;}
+        #field .fbox3 .fslide2 .lboxTxt1 h3 {font-size:11px;}
+        #field .fbox3 .fslide2 .lboxTxt2 {width:100%; height:10%; background:plum; display:flex; flex-flow:row wrap; justify-content:center; align-items:center;}
+        #field .fbox3 .fslide2 .lboxTxt2 p {font-size:11px;}
+        
+
+        #field .fbox4 {width:100%; height:20%; background:blue;}
+
+        /*이달의 책*/
+        #monthWrap {width:100%; height:360px;}
+        #month {width:980px; height:100%; background:thistle; margin:0 auto;}
+
+        /*CD/DVD/특별판*/
+        #etcWrap {width:100%; height:600px;}
+        #etc {width:980px; height:100%; background:yellowgreen; margin:0 auto;}
+
+        /*서비스&헤택*/
+        #serviceWrap {width:100%; height:150px;}
+        #service {width:980px; height:100%; background:navy; margin:0 auto;}
+
+        /*쿠폰/상품권*/
+        #friendWrap {width:100%; height:59px; background:teal;}
+
+        /*하단*/
+        footer {width:100%; height:220px;}
+        #footerWrap {width:980px; height:100%; background:gray; margin:0 auto;}
+    </style>
+</head>
+
+<body>
+    <!--헤더-->
+    <header>
+
+        <div id="htopWrap">
+            <div id="htop">
+
+                <div id="home">
+                    <div class="box"><a href="#">홈</a></div>
+                    <div class="box"><a href="#">도서 바로가기</a></div>
+                    <div class="box"><a href="#">티켓</a></div>
+                    <div class="box"><a href="#">투어</a></div>
+                </div>
+
+                <div id="login">
+                    <ul class="login">
+                        <li><a href="#">로그인</a></li>
+                        <li class="sbar"><a href="#">|</a></li>
+                        <li><a href="#">회원가입</a></li>
+                        <li class="sbar"><a href="#">|</a></li>
+                        <li><a href="#">북카트</a></li>
+                        <li class="sbar"><a href="#">|</a></li>
+                        <li><a href="#">마이페이지
+                            <ul class="sub">
+                                <li><a href="#"><strong>·</strong>마이도서</a></li>
+                                <li><a href="#"><strong>·</strong>주문배송조회</a></li>
+                                <li><a href="#"><strong>·</strong>I-포인트적립</a></li>
+                                <li><a href="#"><strong>·</strong>나의할인쿠폰</a></li>
+                                <li><a href="#"><strong>·</strong>회원수정</a></li>
+                            </ul>
+                        </a></li>
+                        <li class="sbar"><a href="#">|</a></li>
+                        <li><a href="#">북피니언</a></li>
+                        <li class="sbar"><a href="#">|</a></li>
+                        <li><a href="#">고객센터</a></li>
+                        <li class="sbar"><a href="#">|</a></li>
+                        <li><a href="#">모바일APP</a></li>
+                        <li class="sbar"><a href="#">|</a></li>
+                        <li><a href="#">Language
+                            <ul class="sub">
+                                <li><a href="#"><strong>·</strong>English</a></li>
+                                <li><a href="#"><strong>·</strong>日本語</a></li>
+                                <li><a href="#"><strong>·</strong>中文</a></li>
+                            </ul>
+                        </a></li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+
+        <div id="hsecWrap">
+            <div id="hsec">
+                <div id="logo">
+                    <a href="#"><img src="img/logo.jpg"></a>
+                </div>
+                <div id="serchWrap">
+                    <div id="serchtop"></div>
+                    <div id="serch">                        
+                        <input name="serch">      
+                        <div id="serchbtn">
+                            <a href="#"><i class="fas fa-search"></i></a>
+                        </div>                  
+                    </div>
+                    <div id="serchBot">
+                        <ul>
+                            <li><a href="#">김훈 소설집</a></li>
+                            <li class="sbar">|</li>
+                            <li><a href="#">치매 백과사전</a></li>
+                            <li class="sbar">|</li>
+                            <li><a href="#">프로파일러</a></li>
+                            <li class="sbar">|</li>
+                            <li><a href="#">안녕달 신간</a></li>
+                            <li class="sbar">|</li>
+                            <li><a href="#">핏블리</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div id="ad">
+                    <a href="#"><img src="img/ad.jpg"></a>
+                </div>
+            </div>
+        </div>
+
+        <!--카테고리-->
+        <div id="hbotWrap">
+            <nav>
+                <div id="categoryAll">                    
+                    <span class="fa fa-bars" title="menu"></span>                                    
+                </div>
+                <!--전체카테고리 메뉴-->
+                <div class="categoryMenu">      
+                    <div class="categoryWrap">
+
+                        <div class="category1">
+                            <h1>국내도서</h1>
+                            <div class="cate1Box1">
+                                <ul class="ko">
+                                    <li><a href="#">소설</a></li>
+                                    <li><a href="#">장르소설</a></li>
+                                    <li><a href="#">시ㆍ에세이</a></li>
+                                    <li><a href="#">경제경영</a></li>
+                                    <li><a href="#">자기계발</a></li>
+                                    <li><a href="#">사회과학</a></li>
+                                    <li><a href="#">역사ㆍ문화</a></li>
+                                    <li><a href="#">예술ㆍ대중문화</a></li>
+                                    <li><a href="#">인문</a></li>
+                                    <li><a href="#">자연ㆍ과학</a></li>
+                                    <li><a href="#">종교ㆍ역학</a></li>
+                                    <li><a href="#">유아</a></li>
+                                    <li><a href="#">아동</a></li>
+                                    <li><a href="#">가정과생활</a></li>
+                                    <li><a href="#">청소년</a></li>
+                                    <li><a href="#">초등학습</a></li>
+                                    <li><a href="#">중등학습</a></li>
+                                    <li><a href="#">고등학습</a></li>
+                                    <li><a href="#">국어ㆍ외국어ㆍ사전</a></li>                                
+                                </ul>
+                            </div>
+                            
+                            <div calss="cate1Box2">
+                                <ul class="ko">
+                                    <li><a href="#">자격서수험서</a></li>
+                                    <li><a href="#">공무원수험서</a></li>
+                                    <li><a href="#">컴퓨터ㆍ인터넷</a></li>
+                                    <li><a href="#">전공ㆍ대학교재</a></li>
+                                    <li><a href="#">여행</a></li>
+                                    <li><a href="#">취미레져</a></li>
+                                    <li><a href="#">건강뷰티</a></li>
+                                    <li><a href="#">잡지</a></li>
+                                    <li><a href="#">만화ㆍ라이트노벨</a></li>
+                                    <li><a href="#">유아동전집</a></li>
+                                    <li><a href="#">예약판매</a></li>                                
+                                </ul>
+                            </div>                           
+                        </div>
+
+                        <div class="category2">
+                            <h1>외국도서</h1>
+                            <ul class="ko1">
+                                <li><a href="#">어린이</a></li>
+                                <li><a href="#">문학</a></li>
+                                <li><a href="#">ELTㆍ사전</a></li>
+                                <li><a href="#">컴퓨터</a></li>
+                                <li><a href="#">경제ㆍ인문</a></li>
+                                <li><a href="#">실용ㆍ예술</a></li>
+                                <li><a href="#">대학ㆍ전문서적</a></li>
+                                <li><a href="#">해외잡지</a></li>
+                                <li><a href="#">학습교구/게임</a></li>
+                                <li><a href="#">프랑스도서</a></li>
+                                <li><a href="#">예약판매</a></li>
+                                <li><a href="#">원서vs번역서</a></li>
+                            </ul>
+                        </div>
+
+                        <div class="category3">
+                            <h1>음반</h1>
+                            <ul class="ko2">
+                                <li><a href="#">가요</a></li>
+                                <li><a href="#">팝</a></li>
+                                <li><a href="#">클래식</a></li>
+                                <li><a href="#">국악</a></li>
+                                <li><a href="#">일본음악</a></li>
+                                <li><a href="#">락</a></li>
+                                <li><a href="#">뉴에이지</a></li>
+                                <li><a href="#">해외구매</a></li>
+                                <li><a href="#">수입음반</a></li>
+                                <li><a href="#">재즈</a></li>
+                                <li><a href="#">유아ㆍ아동ㆍ태교</a></li>
+                                <li><a href="#">뮤직 DVD</a></li>
+                                <li><a href="#">O.S.T</a></li>
+                                <li><a href="#">월드뮤직</a></li>
+                                <li><a href="#">종교</a></li>
+                                <li><a href="#">예약판매</a></li>
+                                <li><a href="#">스타샵</a></li>
+                                <li><a href="#">아티스트파일</a></li>
+                                <li><a href="#">LP</a></li>
+                            </ul>
+                        </div>
+
+                        <div class="category4">
+                            <h1>DVD</h1>
+                            <ul class="ko3">
+                                <li><a href="#">블루레이</a></li>
+                                <li><a href="#">EBS교육용</a></li>
+                                <li><a href="#">유아동ㆍ교육 DVD</a></li>
+                                <li><a href="#">영화</a></li>
+                                <li><a href="#">다큐멘터리</a></li>
+                                <li><a href="#">건강ㆍ취미ㆍ스포츠</a></li>
+                                <li><a href="#">TV시리즈</a></li>
+                                <li><a href="#">해외구매</a></li>
+                                <li><a href="#">블루레이해외구매</a></li>
+                                <li><a href="#">애니메이션</a></li>
+                                <li><a href="#">예약판매</a></li>
+                            </ul>
+                        </div>
+
+                        <div class="category5">
+                            <h1>굿즈#</h1>
+                            <ul class="ko4">
+                                <li><a href="#">문구/팬시</a></li>
+                                <li><a href="#">사무/학용</a></li>
+                                <li><a href="#">학습</a></li>
+                                <li><a href="#">독서용품</a></li>
+                            </ul>
+                        </div>
+
+                    </div>                                     
+                </div>
+
+                <div id="category1">
+                    <ul>
+                        <li><a href="#">베스트셀러</a></li>
+                        <li><a href="#">신간</a></li>
+                        <li><a href="#">이벤트</a></li>
+                        <li><a href="#">정가인하</a></li>
+                    </ul>
+                </div>
+
+                <div id="category2Wrap">
+                    <div id="category2">
+                        <ul>
+                            <li><a href="#">음반</a></li>
+                            <li><a href="#">DVD</a></li>
+                        </ul>
+                    </div>
+                </div>
+                
+            </nav>
+        </div>
+
+    </header>
+
+    <!--메인-->
+    <main>
+        <!--슬라이드-->
+        <div id="sliderWrap" style="background:#f5ebd9">
+            <div id="slideWrap">
+                <div id="slideImg">
+                    <ul class="slide">
+                        <li><a href="#"><img src="img/slideimg/slide1.crdownload"></a></li>
+                        <li><a href="#"><img src="img/slideimg/slide2.png"></a></li>
+                        <li><a href="#"><img src="img/slideimg/slide3.png"></a></li>
+                        <li><a href="#"><img src="img/slideimg/slide4.png"></a></li>
+                    </ul>
+                    <span class="prev">&lt;</span>
+                    <span class="next">&gt;</span>
+                </div>
+
+                <!--랭킹박스-->
+                <div id="ranking">
+
+                    <div class="ranWrap1">
+                        <h1><a href="#">베스트셀러</a></h1>
+                    </div>
+
+                    <div class="ranWrap2">
+                        <ul class="ranmenu">
+                            <li>오늘</li>
+                            <li>주간</li>
+                        </ul>
+                    </div>
+
+                    <div class="ranWrap3">
+                        <ul>
+                            <li><a href="#">
+                                <span class="no">1</span>
+                                <span class="udWrap">
+                                    <i class="fa fa-caret-up" id="iconUp"></i>
+                                    <em>3</em>
+                                </span>                               
+                                <strong>기분을 관리하면 인생이 관리된다</strong>
+                            </a></li>
+
+                            <li><a href="#">
+                                <span class="no">2</span>
+                                <span class="udWrap">
+                                    <i class="fa fa-caret-up" id="iconUp"></i>
+                                    <em>1</em>
+                                </span>                               
+                                <strong>인플레이션에서 살아남기</strong>
+                            </a></li>
+
+                            <li><a href="#">
+                                <span class="no">3</span>
+                                <span class="udWrap">
+                                    <i class="fa fa-caret-down" id="iconDown"></i>
+                                    <em>1</em>
+                                </span>                               
+                                <strong>불편한 편의점(40만부 기념 벚꽃 에디션)</strong>
+                            </a></li>
+
+                            <li><a href="#">
+                                <span class="no">4</span>
+                                <span class="udWrap">
+                                    <i class="fa fa-caret-down" id="iconDown"></i>
+                                    <em>3</em>
+                                </span>                               
+                                <strong>작별인사</strong>
+                            </a></li>
+
+                            <li><a href="#">
+                                <span class="no">5</span>
+                                <span class="udWrap">
+                                    <i class="fa fa-caret-up" id="iconUp"></i>
+                                    <em>3</em>
+                                </span>                               
+                                <strong>당신은 결국 무엇이든 해내는 사람</strong>
+                            </a></li>
+
+                            <li><a href="#">
+                                <span class="no">6</span>
+                                <span class="udWrap">
+                                    <i class="fa fa-minus" id="iconMi"></i>
+                                    <em></em>
+                                </span>                               
+                                <strong>역행자</strong>
+                            </a></li>
+
+                            <li><a href="#">
+                                <span class="no">7</span>
+                                <span class="udWrap">
+                                    <i class="fa fa-minus" id="iconMi"></i>
+                                    <em></em>
+                                </span>                               
+                                <strong>실크로드 세계사 세트(블루 커버 에디션)</strong>
+                            </a></li>
+
+                            <li><a href="#">
+                                <span class="no">8</span>
+                                <span class="udWrap">
+                                    <i class="fa fa-caret-down" id="iconDown"></i>
+                                    <em>1</em>
+                                </span>                               
+                                <strong>마음의 법칙</strong>
+                            </a></li>
+
+                            <li><a href="#">
+                                <span class="no">9</span>
+                                <span class="udWrap">
+                                    <i class="fa fa-caret-up" id="iconUp"></i>
+                                    <em>2</em>
+                                </span>                               
+                                <strong>실크로드 세계사</strong>
+                            </a></li>
+
+                            <li><a href="#">
+                                <span class="no">10</span>
+                                <span class="udWrap">
+                                    <i class="fa fa-caret-up" id="iconUp"></i>
+                                    <em>2</em>
+                                </span>                               
+                                <strong>나로서 충분히 괜찮은 사람</strong>
+                            </a></li>
+
+                        </ul>
+                    </div>
+
+                    <div class="ranWrap4">
+                        <ul>
+                            <li><a href="#">
+                                <span class="no">1</span>
+                                <span class="udWrap">
+                                    <i class="fa fa-caret-up" id="iconUp"></i>
+                                    <em>1</em>
+                                </span>                               
+                                <strong>역행자</strong>
+                            </a></li>
+
+                            <li><a href="#">
+                                <span class="no">2</span>
+                                <span class="udWrap">
+                                    <i class="fa fa-caret-down" id="iconDown"></i>
+                                    <em>1</em>
+                                </span>                               
+                                <strong>작별인사</strong>
+                            </a></li>
+
+                            <li><a href="#">
+                                <span class="no">3</span>
+                                <span class="udWrap">
+                                    <i class="fa fa-caret-up" id="iconUp"></i>
+                                    <em>1</em>
+                                </span>                               
+                                <strong>인플레이션에서 살아남기</strong>
+                            </a></li>
+
+                            <li><a href="#">
+                                <span class="no">4</span>
+                                <span class="udWrap">
+                                    <i class="fa fa-caret-up" id="iconUp"></i>
+                                    <em>1</em>
+                                </span>                               
+                                <strong>기분을 관리하면 인생이 관리된다</strong>
+                            </a></li>
+
+                            <li><a href="#">
+                                <span class="no">5</span>
+                                <span class="udWrap">
+                                    <i class="fa fa-caret-down" id="iconDown"></i>
+                                    <em>2</em>
+                                </span>                               
+                                <strong>불편한 편의점(40만부 기념 벚꽃 에디션)</strong>
+                            </a></li>
+
+                            <li><a href="#">
+                                <span class="no">6</span>
+                                <span class="udWrap">
+                                    <span class="new">NEW</span>
+                                    <em></em>
+                                </span>                               
+                                <strong>백년허리 2: 치료편</strong>
+                            </a></li>
+
+                            <li><a href="#">
+                                <span class="no">7</span>
+                                <span class="udWrap">
+                                    <i class="fa fa-minus" id="iconMi"></i>
+                                    <em></em>
+                                </span>                               
+                                <strong>나로서 충분히 괜찮은 사람</strong>
+                            </a></li>
+
+                            <li><a href="#">
+                                <span class="no">8</span>
+                                <span class="udWrap">
+                                    <i class="fa fa-caret-up" id="iconUp"></i>
+                                    <em>7</em>
+                                </span>                               
+                                <strong>멘탈을 바꿔야 인생이 바뀐다</strong>
+                            </a></li>
+
+                            <li><a href="#">
+                                <span class="no">9</span>
+                                <span class="udWrap">
+                                    <span class="new">NEW</span>
+                                    <em></em>
+                                </span>                               
+                                <strong>백년운동</strong>
+                            </a></li>
+
+                            <li><a href="#">
+                                <span class="no">10</span>
+                                <span class="udWrap">
+                                    <span class="new">NEW</span>
+                                    <em></em>
+                                </span>                               
+                                <strong>백년허리 1: 진단편</strong>
+                            </a></li>
+
+                        </ul>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+        <div id="sliderControl">
+            <div id="controlWrap">
+                <div class="cbox"></div>
+                <div class="cbox"></div>
+                <div class="cbox"></div>
+                <div class="cbox"></div>
+                <div class="cbox1"></div>
+            </div>
+        </div>
+
+        <!--배너-->
+        <div id="bannerWrap">
+            <div id="banner">
+                <div class="bbox"></div>
+                <div class="bbox"></div>
+                <div class="bbox"></div>
+            </div>
+        </div>
+
+        <!--추천-->
+        <div id="recommendWrap">            
+            <div id="recomend">
+                <div id="sideBanner"></div>  
+                <div id="recomendBox">
+                    <div class="box1">
+                        <div class="box1"><h1>인터파크추천</h1><span><a href="#">더보기</a></span><i class="fa fa-caret-right"></i></div>
+                        <div class="box2">
+                            <div class="bookWrap">     
+                                <div class="book">
+                                    <ul class="bslide">
+                                       <li>
+                                        <div class="lboxImg"></div>
+                                        <div class="lboxTxt">
+                                            <div class="lboxTxt1"></div>
+                                            <div class="lboxTxt2"></div>
+                                        </div>                                        
+                                       </li>
+                                       <li>
+                                        <div class="lboxImg"></div>
+                                        <div class="lboxTxt">
+                                            <div class="lboxTxt1"></div>
+                                            <div class="lboxTxt2"></div>
+                                        </div> 
+                                       </li>
+                                       <li>
+                                        <div class="lboxImg"></div>
+                                        <div class="lboxTxt">
+                                            <div class="lboxTxt1"></div>
+                                            <div class="lboxTxt2"></div>
+                                        </div> 
+                                       </li>
+                                       <li>
+                                        <div class="lboxImg"></div>
+                                        <div class="lboxTxt">
+                                            <div class="lboxTxt1"></div>
+                                            <div class="lboxTxt2"></div>
+                                        </div> 
+                                       </li>
+                                    </ul>
+                                </div>                           
+                                <div class="trendad"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="box2"></div>
+                </div>  
+            </div>
+        </div>
+
+        <!--초이스-->
+        <div id="choiceWrap">
+            <div id="choice">
+                <div class="box1">
+                    <div class="box1"><h1>출판사<span>초이스!</span></h1></div>
+                    <div class="box2"><img src="img/choice1.jpg"></div>
+                </div>
+
+                <div class="box2">
+                    <div class="box1"><h1>미디어<span>추천!</span></h1></div>
+                    <div class="box2">                        
+                        <ul class="mslide">
+                            <li>
+                                <div class="imgbox"></div>
+                                <div class="lboxTxt1"></div>
+                                <div class="lboxTxt2"></div>
+                            </li>
+                            <li>
+                                <div class="imgbox"></div>
+                                <div class="lboxTxt1"></div>
+                                <div class="lboxTxt2"></div>
+                            </li>
+                            <li>
+                                <div class="imgbox"></div>
+                                <div class="lboxTxt1"></div>
+                                <div class="lboxTxt2"></div>
+                            </li>
+                        </ul>               
+                        <span class="prev">&lt;</span>
+                        <span class="next">&gt;</span>
+                    </div>
+                </div>
+                <div class="box3">
+                    <div class="box1"><h1><span>이 책</span> 어때?</h1></div>
+                    <div class="box2">
+                        <ul class="hslide">
+                            <li>
+                                <div class="imgbox"></div>
+                                <div class="lboxTxt1"></div>
+                                <div class="lboxTxt2"></div>
+                            </li>
+                            <li>
+                                <div class="imgbox"></div>
+                                <div class="lboxTxt1"></div>
+                                <div class="lboxTxt2"></div>
+                            </li>
+                        </ul>
+                        <span class="hprev">&lt;</span>
+                        <span class="hnext">&gt;</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--초이스 밑 배너-->
+        <div id="bannerImage">
+            <div id="choiceBanner">
+                <a href><img src="img/choicebanner.png"></a>
+            </div>
+        </div>
+
+        <!--분야별추천-->
+        <div id="fieldWrap">
+            <div id="field">
+                <div class="fbox1"><h1>분야별추천</h1></div>
+                <div class="fbox2">
+                    <ul class="fmenu">
+                        <li>1</li>
+                        <li>2</li>
+                        <li>3</li>
+                        <li>4</li>
+                        <li>5</li>
+                        <li>6</li>
+                        <li>7</li>
+                    </ul>
+                </div>
+                <div class="fbox3">                   
+                    <ul class="fslide1">
+                        <li>
+                            <div class="imgbox"></div>
+                            <div class="lboxTxt1"></div>
+                            <div class="lboxTxt2"></div>
+                        </li>
+                        <li>
+                            <div class="imgbox"></div>
+                            <div class="lboxTxt1"></div>
+                            <div class="lboxTxt2"></div>
+                        </li>
+                        <li>
+                            <div class="imgbox"></div>
+                            <div class="lboxTxt1"></div>
+                            <div class="lboxTxt2"></div>
+                        </li>
+                        <li>
+                            <div class="imgbox"></div>
+                            <div class="lboxTxt1"></div>
+                            <div class="lboxTxt2"></div>
+                        </li>
+                        <li>
+                            <div class="imgbox"></div>
+                            <div class="lboxTxt1"></div>
+                            <div class="lboxTxt2"></div>
+                        </li>
+                        <li>
+                            <div class="imgbox"></div>
+                            <div class="lboxTxt1"></div>
+                            <div class="lboxTxt2"></div>
+                        </li>                      
+                    </ul>  
+                    
+                    <ul class="fslide2">
+                        <li>
+                            <div class="imgbox"></div>
+                            <div class="lboxTxt1"></div>
+                            <div class="lboxTxt2"></div>
+                        </li>
+                        <li>
+                            <div class="imgbox"></div>
+                            <div class="lboxTxt1"></div>
+                            <div class="lboxTxt2"></div>
+                        </li>
+                        <li>
+                            <div class="imgbox"></div>
+                            <div class="lboxTxt1"></div>
+                            <div class="lboxTxt2"></div>
+                        </li>
+                        <li>
+                            <div class="imgbox"></div>
+                            <div class="lboxTxt1"></div>
+                            <div class="lboxTxt2"></div>
+                        </li>
+                        <li>
+                            <div class="imgbox"></div>
+                            <div class="lboxTxt1"></div>
+                            <div class="lboxTxt2"></div>
+                        </li>
+                        <li>
+                            <div class="imgbox"></div>
+                            <div class="lboxTxt1"></div>
+                            <div class="lboxTxt2"></div>
+                        </li>                      
+                    </ul>
+                </div>
+                <div class="fbox4"></div>
+            </div>
+        </div>
+
+        <!--이달의 추천-->
+        <div id="monthWrap">
+            <div id="month"></div>
+        </div>
+
+        <!--기타등등-->
+        <div id="etcWrap">
+            <div id="etc"></div>
+        </div>
+
+        <!--서비스/혜택-->
+        <div id="serviceWrap">
+            <div id="service"></div>
+        </div>
+
+        <div id="friendWrap"></div>
+
+    </main>
+
+    <!--하단-->
+    <footer>
+        <div id="footerWrap"></div>
+    </footer>
+    
+</body>
+
+<script>
+    /*마이페이지/언어선택*/
+    $(".login li").mouseover(function(){
+        $(this).children(".sub").stop().show();
+    });
+    $(".login li").mouseout(function(){
+        $(".sub").hide();
+    });
+
+    /*전체카테고리*/
+    $("#categoryAll").click(function(){
+        $(".categoryMenu").fadeToggle("fast");
+    });
+
+    /*랭킹박스*/
+    $(".ranmenu li").eq(0).click(function(){
+        $(".ranWrap3").show();
+        $(".ranWrap4").hide();
+        $(this).css({"border":"1px solid rgba(255,255,255,0.3)", "border-bottom":"none"});
+        $(".ranmenu li").eq(1).css({"border":"none","border-bottom":"1px solid rgba(255,255,255,0.3)"});
+    });
+
+    $(".ranmenu li").eq(1).click(function(){
+        $(".ranWrap4").show();
+        $(".ranWrap3").hide();
+        $(this).css({"border":"1px solid rgba(255,255,255,0.3)", "border-bottom":"none"});
+        $(".ranmenu li").eq(0).css({"border":"none","border-bottom":"1px solid rgba(255,255,255,0.3)"});
+    });               
+</script>
+
+
+<script>
+    var i=0;
+
+    $("#controlWrap .cbox").mouseenter(function(){
+        i=$(this).index();
+    });
+
+    function slide(){
+        i++;
+        if(i>$(".slide li:last").index()){
+            i=0;
+        }
+        $(".slide li").eq(i).stop().fadeIn("slow");
+        $(".slide li").eq(i-1).stop().fadeOut(); 
+        
+        if(i==1){
+            $("#sliderWrap").css({"background":"#f7cd10"}); 
+            $("#controlWrap .cbox").eq(i-1).css({"color":"black","border-top":"none"});
+            $("#controlWrap .cbox").eq(i).css({"border-top":"3px solid red"});
+            $("#controlWrap .cbox").eq(i).siblings().css({"border-top":"1px solid black"});
+        }else if(i==2){
+            $("#sliderWrap").css({"background":"#e0d1fc"});
+            $("#controlWrap .cbox").eq(i-1).css({"color":"black","border-top":"none"});
+            $("#controlWrap .cbox").eq(i).css({"border-top":"3px solid red"});
+            $("#controlWrap .cbox").eq(i).siblings().css({"border-top":"1px solid black"});
+        }else if(i==3){
+            $("#sliderWrap").css({"background":"#fff7d2"});
+            $("#controlWrap .cbox").eq(i-1).css({"color":"black","border-top":"none"});
+            $("#controlWrap .cbox").eq(i).css({"border-top":"3px solid red"});
+            $("#controlWrap .cbox").eq(i).siblings().css({"border-top":"1px solid black"});
+        }else{
+            $("#sliderWrap").css({"background":"#f5ebd9"});
+            $("#controlWrap .cbox").eq(i-1).css({"color":"black","border-top":"none"});
+            $("#controlWrap .cbox").eq(i).css({"border-top":"3px solid red"});
+            $("#controlWrap .cbox").eq(i).siblings().css({"border-top":"1px solid black"});
+        }
+    }           
+
+    $("#controlWrap .cbox").eq(0).mouseenter(function(){        
+        $("#sliderWrap").css({"background":"#f5ebd9"}); 
+        $("#controlWrap .cbox").css({"border-top":"none"});
+        $(this).css({"border-top":"3px solid red"});
+        $(this).siblings().css({"border-top":"1px solid black"});
+        $(".slide li").stop().fadeOut();
+        $(".slide li").eq(0).stop().fadeIn("slow");
+    });
+    $("#controlWrap .cbox").eq(1).mouseenter(function(){        
+        $("#sliderWrap").css({"background":"#f7cd10"}); 
+        $("#controlWrap .cbox").css({"border-top":"none"});
+        $(this).css({"border-top":"3px solid red"});
+        $(this).siblings().css({"border-top":"1px solid black"});
+        $(".slide li").stop().fadeOut();
+        $(".slide li").eq(1).stop().fadeIn("slow");
+    });
+    $("#controlWrap .cbox").eq(2).mouseenter(function(){        
+        $("#sliderWrap").css({"background":"#e0d1fc"}); 
+        $("#controlWrap .cbox").css({"border-top":"none"});
+        $(this).css({"border-top":"3px solid red"});
+        $(this).siblings().css({"border-top":"1px solid black"});
+        $(".slide li").stop().fadeOut();
+        $(".slide li").eq(2).stop().fadeIn("slow");
+    });
+    $("#controlWrap .cbox").eq(3).mouseenter(function(){        
+        $("#sliderWrap").css({"background":"#fff7d2"}); 
+        $("#controlWrap .cbox").css({"border-top":"none"});
+        $(this).css({"border-top":"3px solid red"});
+        $(this).siblings().css({"border-top":"1px solid black"});
+        $(".slide li").stop().fadeOut();
+        $(".slide li").eq(3).stop().fadeIn("slow");
+    });
+
+    
+    function next(){
+        i++;
+        if(i>$(".slide li:last").index()){
+            i=0;
+        }
+        $(".slide li").eq(i).stop().fadeIn("slow");
+        $(".slide li").eq(i-1).stop().fadeOut(); 
+        
+        if(i==1){
+            $("#sliderWrap").css({"background":"#f7cd10"});
+            $("#controlWrap .cbox").eq(i-1).css({"color":"black","border-top":"none"});
+            $("#controlWrap .cbox").eq(i).css({"border-top":"3px solid red"});
+            $("#controlWrap .cbox").eq(i).siblings().css({"border-top":"1px solid black"});
+        }else if(i==2){
+            $("#sliderWrap").css({"background":"#e0d1fc"});
+            $("#controlWrap .cbox").eq(i-1).css({"color":"black","border-top":"none"});
+            $("#controlWrap .cbox").eq(i).css({"border-top":"3px solid red"});
+            $("#controlWrap .cbox").eq(i).siblings().css({"border-top":"1px solid black"});
+        }else if(i==3){
+            $("#sliderWrap").css({"background":"#fff7d2"});
+            $("#controlWrap .cbox").eq(i-1).css({"color":"black","border-top":"none"});
+            $("#controlWrap .cbox").eq(i).css({"border-top":"3px solid red"});
+            $("#controlWrap .cbox").eq(i).siblings().css({"border-top":"1px solid black"});
+        }else{
+            $("#sliderWrap").css({"background":"#f5ebd9"});
+            $("#controlWrap .cbox").eq(i-1).css({"color":"black","border-top":"none"});
+            $("#controlWrap .cbox").eq(i).css({"border-top":"3px solid red"});
+            $("#controlWrap .cbox").eq(i).siblings().css({"border-top":"1px solid black"});
+        }
+    }
+
+    function prev(){
+        i--;
+        if(i>$(".slide li:last").index()||i<-3){
+            i=0;
+        }
+        $(".slide li").eq(i).stop().fadeIn("slow");
+        $(".slide li").eq(i+1).stop().fadeOut(); 
+        
+        if(i==1||i==-3){
+            $("#sliderWrap").css({"background":"#f7cd10"});
+            $("#controlWrap .cbox").eq(i+1).css({"color":"black","border-top":"none"});
+            $("#controlWrap .cbox").eq(i).css({"border-top":"3px solid red"});
+            $("#controlWrap .cbox").eq(i).siblings().css({"border-top":"1px solid black"});
+        }else if(i==2||i==-2){
+            $("#sliderWrap").css({"background":"#e0d1fc"});
+            $("#controlWrap .cbox").eq(i+1).css({"color":"black","border-top":"none"});
+            $("#controlWrap .cbox").eq(i).css({"border-top":"3px solid red"});
+            $("#controlWrap .cbox").eq(i).siblings().css({"border-top":"1px solid black"});
+        }else if(i==3||i==-1){
+            $("#sliderWrap").css({"background":"#fff7d2"});
+            $("#controlWrap .cbox").eq(i+1).css({"color":"black","border-top":"none"});
+            $("#controlWrap .cbox").eq(i).css({"border-top":"3px solid red"});
+            $("#controlWrap .cbox").eq(i).siblings().css({"border-top":"1px solid black"});
+        }else{
+            $("#sliderWrap").css({"background":"#f5ebd9"});
+            $("#controlWrap .cbox").eq(i+1).css({"color":"black","border-top":"none"});
+            $("#controlWrap .cbox").eq(i).css({"border-top":"3px solid red"});
+            $("#controlWrap .cbox").eq(i).siblings().css({"border-top":"1px solid black"});
+        }
+    }
+
+    $("#sliderWrap .next").click(function(){
+        next();
+    });
+
+    $("#sliderWrap .prev").click(function(){
+        prev();
+    });
+
+    var ani=setInterval(slide,5000);
+
+    $("#controlWrap .cbox").mouseover(function(){
+        clearInterval(ani);
+    });
+
+    $("#controlWrap .cbox").mouseout(function(){
+        $(this).css({"border-top":"3px solid red"});
+        ani= setInterval(slide,5000);
+    });
+    
+</script>
+
+<script>
+    function mslide(){
+        $(".mslide").stop().animate({marginLeft:-340},function(){
+            $(".mslide li:first").appendTo(".mslide");
+            $(".mslide").css({marginLeft:0});
+        });
+    }
+
+    function mnext(){
+        $(".mslide").stop().animate({marginLeft:-340},function(){
+            $(".mslide li:first").appendTo(".mslide");
+            $(".mslide").css({marginLeft:0});
+        });
+    }
+
+    function mprev(){        
+        $(".mslide li:last").prependTo(".mslide");
+        $(".mslide").css({marginLeft:-340});        
+        $(".mslide").stop().animate({marginLeft:0})
+    }
+    
+    setInterval(mslide,8000);
+
+    $("#choiceWrap .box2 .prev").click(function(){
+        mprev();
+    });
+
+    $("#choiceWrap .box2 .next").click(function(){
+        mnext();
+    });
+
+    function hnext(){
+        i++;
+        if(i>$(".hslide li:last").index()){
+            i=0;
+        }        
+        
+        if(i==1){
+            $(".hslide li").eq(i).stop().show();
+            $(".hslide li").eq(i-1).stop().hide(); 
+        }
+        else{
+            $(".hslide li").eq(i).stop().show();
+            $(".hslide li").eq(i-1).stop().hide(); 
+        }
+    }
+
+    function hprev(){
+        i--;
+        if(i>$(".hslide li:last").index()||i<-1){
+            i=0;
+        }        
+        
+        if(i<-1){
+            $(".hslide li").eq(i).stop().show();
+            $(".hslide li").eq(i-1).stop().hide(); 
+        }
+        else{
+            $(".hslide li").eq(i).stop().show();
+            $(".hslide li").eq(i-1).stop().hide(); 
+        }
+    }
+
+    $("#choice .box3 .hnext").click(function(){
+        hnext();
+    });
+
+    $("#choice .box3 .hprev").click(function(){
+        hprev();
+    });
+    
+</script>
+</html>
